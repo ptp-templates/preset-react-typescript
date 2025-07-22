@@ -88,5 +88,6 @@ export default {
 ## husky apply
 
 ```bash
+yarn install
 yarn prepare
 ```
