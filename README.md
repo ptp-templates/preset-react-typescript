@@ -21,33 +21,34 @@ npx husky init
 ## Add ESLint + Prettier
 
 ```bash
+yarn add -D lint-staged
 yarn add -D eslint prettier
-yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import
+yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import @eslint/js eslint-plugin-prettier
 ```
 
 ## ESlint setting (eslint.config.js)
 
 ```javascript
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import js from '@eslint/js';
+import { FlatCompat } from '@eslint/eslintrc';
 
 const compat = new FlatCompat();
 
 export default [
   js.configs.recommended,
-  ...compat.extends("plugin:react/recommended"),
-  ...compat.extends("plugin:@typescript-eslint/recommended"),
+  ...compat.extends('plugin:react/recommended'),
+  ...compat.extends('plugin:@typescript-eslint/recommended'),
   {
-    files: ["**/*.ts", "**/*.tsx"],
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: "@typescript-eslint/parser",
+      parser: '@typescript-eslint/parser',
     },
   },
   {
     rules: {
-      "react/react-in-jsx-scope": "off", // React 17+
-      "import/order": ["warn", { "newlines-between": "always" }],
-      "prettier/prettier": "warn",
+      'react/react-in-jsx-scope': 'off', // React 17+
+      'import/order': ['warn', { 'newlines-between': 'always' }],
+      'prettier/prettier': 'warn',
     },
   },
 ];
@@ -59,7 +60,7 @@ export default [
 export default {
   semi: true,
   singleQuote: true,
-  trailingComma: "all",
+  trailingComma: 'all',
   printWidth: 100,
   tabWidth: 2,
 };
@@ -70,6 +71,7 @@ export default {
 ```json
 "scripts": {
     // ...
+    "type": "module",
     "prepare": "husky install",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write .",
